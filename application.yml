@@ -1,0 +1,79 @@
+server:
+  port: 2333
+  address: 0.0.0.0
+  http2:
+    enabled: false
+
+lavalink:
+  plugins:
+    # YouTube audio playback plugin for Lavalink v4
+    - dependency: "dev.lavalink.youtube:youtube-plugin:1.11.4"
+      repository: "https://maven.lavalink.dev/releases"
+    # Spotify, Apple Music & Deezer playback support
+    - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.3.0"
+      repository: "https://maven.lavalink.dev/releases"
+
+  server:
+    password: "alamin500@11" # AminX Personal Lavalink Password
+    sources:
+      youtube: false # Handled via youtube-plugin
+      bandcamp: true
+      soundcloud: true
+      twitch: true
+      vimeo: true
+      http: true
+      local: false
+    filters:
+      volume: true
+      equalizer: true
+      karaoke: true
+      timescale: true
+      tremolo: true
+      vibrato: true
+      distortion: true
+      rotation: true
+      channelMix: true
+      lowPass: true
+    bufferDurationMs: 400
+    frameBufferDurationMs: 5000
+    opusEncodingQuality: 10
+    resamplingQuality: HIGH
+    trackStuckThresholdMs: 10000
+    useSeekGhosting: true
+    playerUpdateInterval: 5
+    youtubeSearchEnabled: true
+    soundcloudSearchEnabled: true
+    gc-warnings: true
+
+plugins:
+  youtube:
+    enabled: true
+    allowSearch: true
+    allowDirectVideoIds: true
+    allowDirectPlaylistIds: true
+    clients:
+      - MUSIC
+      - ANDROID_VR
+      - WEB
+      - TVHTML5EMBEDDED
+
+  lavasrc:
+    providers:
+      - "ytsearch:\"%ISRC%\""
+      - "ytsearch:%QUERY%"
+    sources:
+      spotify: true
+      applemusic: true
+      deezer: true
+      yandexmusic: false
+    spotify:
+      clientId: "" # Optional: Spotify Developer Dashboard Client ID
+      clientSecret: "" # Optional: Spotify Developer Dashboard Client Secret
+      countryCode: "US"
+
+logging:
+  file:
+    path: ./logs/lavalink.log
+  level:
+    root: INFO
+    lavalink: INFO
